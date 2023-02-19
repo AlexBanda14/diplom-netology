@@ -6,7 +6,7 @@ for event in longpoll.listen():
         request = event.text.lower()
         user_id = str(event.user_id)
         if request == 'привет':
-            write_msg(user_id, f'Привет, {get_name(user_id)} \n Для начала поиска напишите "Начать поиск"')
+            write_msg(user_id, f'Привет! \n Для начала поиска напишите "Начать поиск"')
 
         elif request == 'начать поиск':
             creating_database()
@@ -18,6 +18,7 @@ for event in longpoll.listen():
             for i in line:
                 offset += 1
                 start_searching(user_id, offset)
+                write_msg(event.user_id, f'Нашёл для тебя пару, пиши "Вперед" для перехода к следующей паре')
                 break
 
         else:
